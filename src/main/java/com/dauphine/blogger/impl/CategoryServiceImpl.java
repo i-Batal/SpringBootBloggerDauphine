@@ -1,42 +1,55 @@
 package com.dauphine.blogger.impl;
 
+import com.dauphine.blogger.models.Category;
+import com.dauphine.blogger.repository.CategoryRepository;
 import com.dauphine.blogger.services.CategoryService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
+import java.util.UUID;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    @Override
-    public List<String> getAllCategories() {
-        return null;
+
+    private final CategoryRepository categoryRepository;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public String getCategoryById(int id) {
-        return null;
+    public List<Category> getAll() {
+        return categoryRepository.findAll();
     }
 
     @Override
-    public void createCategory(ElementRequest elementRequest) {
+    public List<Category> getAllByName(String name) {
+        return categoryRepository.findByName(name);
+    }
 
+    public Category getById(UUID id) {
+        return categoryRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void updateCategoryName(int id, String name) {
-
+    public Category create(String name) {
+        Category category = new Category(name);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public void deleteCategory(int id) {
-
+    public Category updateName(UUID id, String name) {
+        Category category = getById(id);
+        if(category == null){
+            return null;
+        }
+        category.setName(name);
+        return categoryRepository.save(category);
     }
 
 	@Override
-	public void createCategory(ElementRequest elementRequest) {
+	public boolean deleteById(UUID id) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

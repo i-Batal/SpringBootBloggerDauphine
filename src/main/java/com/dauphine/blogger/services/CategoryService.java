@@ -2,28 +2,20 @@ package com.dauphine.blogger.services;
 
 import java.util.List;
 import java.util.UUID;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.dauphine.blogger.models.Category;
 
 public interface CategoryService {
 
-    @GetMapping("/")
-    public List<String> getAllCategories();
+    List<Category> getAll();
 
-    @GetMapping("/{id}")
-    public String getCategoryById(@PathVariable int id);
-    
-    @PostMapping("/")
-    public void createCategory(@RequestBody ElementRequest elementRequest);
+    List<Category> getAllByName(String name);
 
-    @PatchMapping("/")
-    public void updateCategoryName(@RequestParam int id, @RequestParam String name);
+    Category getById(UUID id);
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteCategory(@PathVariable int id);
+    Category create(String name);
+
+    Category updateName(UUID id, String name);
+
+    boolean deleteById(UUID id);
 }

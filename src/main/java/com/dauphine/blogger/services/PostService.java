@@ -1,23 +1,22 @@
 package com.dauphine.blogger.services;
-import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import com.dauphine.blogger.models.Post;
 import java.util.List;
+import java.util.UUID;
 
 public interface PostService {
-    @GetMapping("/")
-    public List<String> getAllPostsByCreationDate(@RequestParam LocalDateTime creationDate);
 
-    @GetMapping("/{categoryId}")
-    public List<String> getPostById(@PathVariable int categoryId);
+    List<Post> getAllByCategoryId(UUID categoryId);
 
-    @PostMapping("/")
-    public void createPost(@RequestBody ElementRequest elementRequest);
+    List<Post> getAll();
 
-    @PatchMapping("/")
-    public void updatePostName(@RequestParam int id, @RequestParam String name);
+    List<Post> getAllByTitleOrContent(String titleOrContent);
 
-    @DeleteMapping("/delete/{id}")
-    public void deletePost(@PathVariable int id);
+    Post getById(UUID id);
+
+    Post create(String title, String content, UUID categoryId);
+
+    Post update(UUID id, String title, String content);
+
+    boolean deleteById(UUID id);
 }
