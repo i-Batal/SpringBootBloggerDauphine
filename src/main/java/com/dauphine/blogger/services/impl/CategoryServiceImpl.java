@@ -1,4 +1,4 @@
-package com.dauphine.blogger.impl;
+package com.dauphine.blogger.services.impl;
 
 import com.dauphine.blogger.models.Category;
 import com.dauphine.blogger.repository.CategoryRepository;
