@@ -32,5 +32,3 @@ public class HelloWorldController
 	}
 	
 }
-
-//https://console.neon.tech/app/projects/dark-snow-74836277/branches/br-crimson-wave-a24gbg10/old_tables
